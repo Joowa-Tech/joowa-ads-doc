@@ -5,10 +5,11 @@ Jowoa Ads Android SDK（后续简称 Joowa SDK） 在 Mopub SDK & AppsFlyer 基�
 1. 自动创建对应聚合广告平台账号并填充广告
 2. 由 Joowa 运营调整广告填充策略，以提高的填充率和eCPM
 
-## SDK 接入步骤概览
+SDK 接入步骤概览：
 
 * 申请 Joowa 开发者账号（需要和商务经理沟通获取）
-* 配置并引入 Joowa SDK 相关依赖
+* 导入 Joowa SDK 到项目
+* 完成 Joowa SDK 相关配置
 * 添加网络安全配置
 * 配置 Admob Application ID（需要和商务经理沟通获取）
 * 初始化 SDK
@@ -18,7 +19,7 @@ Jowoa Ads Android SDK（后续简称 Joowa SDK） 在 Mopub SDK & AppsFlyer 基�
 * 提交 APK 给 Joowa 测试并申请开通正式广告账号
 * 待广告账号开通后即可正式才产生收益
 
-### 申请开发者账号
+## 1. 申请开发者账号
 
 申请开发者账号后，可以获取开发者唯一标识。
 
@@ -26,9 +27,13 @@ Jowoa Ads Android SDK（后续简称 Joowa SDK） 在 Mopub SDK & AppsFlyer 基�
 
 开发者账号和唯一标识可通过和商务经理对接申请获取。
 
-### 配置并引入 Joowa SDK 相关依赖
+## 2. 导入 Joowa SDK
 
-在您的应用的应用构建模块中（如：app/build.gradle)加入以下依赖配置即可
+将 `joowa-ads-xxx.aar` 和 `joowa-ads-xxx.pom` 复制到 app 的 libs 中
+
+## 3. 完成 Joowa SDK 相关配置
+
+在您的应用的应用构建模块中（如：app/build.gradle)加入以下配置即可
 
 ```
 android {
@@ -56,17 +61,22 @@ repositories {
     maven { url 'https://adcolony.bintray.com/AdColony' }
     maven { url 'https://jitpack.io' }
     maven { url 'https://chartboostmobile.bintray.com/Chartboost' }
+
+    // 刚刚导入的文件路径
+    flatDir {
+        dirs 'libs'
+    }
 }
 
 dependencies {
-    // 加入 Joowwa Ads Android SDK
-    implementation('com.joowa:ads:1.0.0') {
+    // 注意替换xxx为实际的版本号
+    implementation(name: 'joowa-ads-xxx', ext: 'aar') {
         transitive = true
     }
 }
 ```
 
-### 添加网络安全配置
+## 4. 添加网络安全配置
 
 > * https://developers.mopub.com/publishers/android/integrate/#step-4-add-a-network-security-configuration-file
 > * https://developers.mopub.com/publishers/mediation/networks/facebook/#localhost-whitelisting
@@ -113,7 +123,7 @@ dependencies {
     </manifest>
     ```
 
-### 配置 Admob Application ID
+## 5. 配置 Admob Application ID
 
 1. 通过商务经理去拿到 **此应用包名** 所对应的 Admob 广告的 Application Id
 2. 在您的 AndroidManifest.xml 的 application 标签中添加 Admob 广告的 Application Id
@@ -128,9 +138,9 @@ dependencies {
     </manifest>
     ```
 
-###  初始化 Joowa SDK
+## 6. 初始化 Joowa SDK
 
-通过调用一下代码以完成 SDK 初始化配置
+在 `Application.onCreate` 方法中，通过调用一下代码以完成 SDK 初始化配置
 
 ```
 JoowaAds.init(Context context, String developerKey, JoowaAdsInitializationListener listener);
@@ -151,12 +161,12 @@ JoowaAds.init(this, "your developer key", new JoowaAdsInitializationListener() {
 
 1. 在执行所有其他 Joowa SDK 的方法之前，必须先完成初始化调用
 
-## 后续步骤
+## 7. 后续步骤
 
 * 接入[激励视频广告](Joowa%20Ads%20Android%20SDK%20激励视频接入文档.md)
 * 接入插屏广告（未支持）
 
-## 其他说明
+## 8. 其他说明
 
 ### 混淆配置
 
