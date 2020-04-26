@@ -170,21 +170,47 @@ dependencies {
  
 ## 6. 初始化 Joowa SDK
 
-在 `Application.onCreate()` 方法中，通过调用一下代码以完成 SDK 初始化配置
+
+1. 在 `Application.onCreate()` 方法中，调用以下代码
 
 ```
-JoowaAds.init(Context context, String developerKey, JoowaAdsInitializationListener listener);
+JoowaAds.initAppsFlyer(Context context);
+```
+e.g.
+
+```
+public class MyApplication extends Application {
+
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        JoowaAds.initAppsFlyer(this);
+    }
+}
+```
+
+2. 在你的 Activity 中调用以下代码，建议在尽可能早的 Activity 中调用初始化代码
+
+```
+JoowaAds.initMopub(Activity activity, String developerKey, JoowaAdsInitializationListener listener);
 ```
 
 e.g. :
 
 ```
-JoowaAds.init(this, "your developer key", new JoowaAdsInitializationListener() {
+public class MainActivity extends Activity{
+
     @Override
-    public void onInitializationFinished() {
-        // Joowa ads sdk complete initialization.
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        JoowaAds.initMopub(this, "你的开发者key", new JoowaAdsInitializationListener() {
+            @Override
+            public void onInitializationFinished() {
+                // Joowa ads sdk complete initialization.
+                JoowaRewardedVideo.load();
+            }
+        });
     }
-});
 ```
 
 注意：
