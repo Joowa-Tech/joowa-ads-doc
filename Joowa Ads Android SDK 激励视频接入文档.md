@@ -4,25 +4,46 @@
 
 在接入 Joowa Ads Android SDK 激励视频模块之前，请先确保完成 [Joowa Ads Android SDK 基础接入文档](Joowa%20Ads%20Android%20SDK%20基础接入文档.md)
 
-## 2. 加载激励视频广告
+## 2. 配置广告位信息
+
+在您应用的 `strings.xml`（如：app/src/main/res/valuse/strings.xml）中填入以下配置：
+
+```
+<resources >
+    <!-- Joowa Rewarded Video Ids -->
+    <string-array name="joowa_rewarded_video_ids" >
+
+        <!-- 多个激励视频广告位ID信息，可以创建多行 item -->
+
+        <item >填写申请到的激励视频广告位ID信息</item >
+        <item >填写申请到的激励视频广告位ID信息</item >
+        <item >填写申请到的激励视频广告位ID信息</item >
+
+        <!-- ... -->
+
+    </string-array >
+</resources >
+```
+
+## 3. 加载激励视频广告
 
 ```
 JoowaRewardedVideo.load();
 ```
 
-## 3. 判断激励视频广告是否加载完毕
+## 4. 判断激励视频广告是否加载完毕
 
 ```
 JoowaRewardedVideo.isReady();
 ```
 
-## 4. 展示激励视频广告
+## 5. 展示激励视频广告
 
 ```
 JoowaRewardedVideo.show();
 ```
 
-## 5. (可选)设置激励视频广告回调监听器
+## 6. (可选)设置激励视频广告回调监听器
 
 ```
 JoowaRewardedVideoListener listener = new JoowaRewardedVideoListener() {
@@ -66,7 +87,7 @@ JoowaRewardedVideo.setListener(listener);
 
 *ps:  JoowaRewardedVideo.setListener(null); 即可取消监听器*
 
-## 6. 补充说明
+## 7. 补充说明
 
 1. Joowa 封装了 Mopub 聚合广告，并移除了广告位（AdunitId/AdPlacement）的相关概念。
 2. 在调用 `load` / `isReady` / `show` 等方法时，SDK内部都会选择在合适的时机去预加载更多广告。
