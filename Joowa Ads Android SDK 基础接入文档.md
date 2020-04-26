@@ -98,14 +98,28 @@ dependencies {
     </resources >
     ```
 
-2. 在您的 `AndroidManifest.xml` 的 `<application>` 标签中添加 Admob 广告的 Application Id
+2. 在您的 `AndroidManifest.xml` 的 `<application>` 标签中添加以下内容：
+    * 开启硬件加速（为了能播放Vungle中的部分广告）
+    * Admob 广告的 Application Id
+    * AppLovin Sdk Key
+
+    e.g.
 
     ```
     <manifest>
-        <application>
+        <application
+            android:hardwareAccelerated="true"
+            >
+            
+            <!-- Admob Application Id -->
             <meta-data
                 android:name="com.google.android.gms.ads.APPLICATION_ID"
-                android:value="这里填写申请到的 Application Id" />
+                android:value="这里填写申请到的 Admob Application Id" />
+
+            <!-- AppLovin SDK Key -->
+            <meta-data
+                android:name="applovin.sdk.key"
+                android:value="这里填写申请到的 AppLovin Sdk Key" />
         </application>
     </manifest>
     ```
