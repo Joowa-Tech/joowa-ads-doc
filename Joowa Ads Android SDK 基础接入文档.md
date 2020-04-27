@@ -10,13 +10,13 @@ SDK 接入步骤概览：
 * 申请 Joowa 开发者账号（需要和商务经理沟通获取）
 * 申请 Joowa 应用配置（需要和商务经理沟通获取）
 * 导入 Joowa SDK 到项目
-* 完成 Joowa SDK 相关配置
+* 完成 Joowa SDK 构建配置
+* 完成 Joowa SDK 其他配置
 * 添加网络安全配置
-* 配置 Admob Application ID（需要和商务经理沟通获取）
 * 初始化 SDK
 * 接入对应的广告形式：
   * 激励视频广告
-  * 插屏广告（未支持）
+  * 插屏广告
 * 提交 APK 给 Joowa 测试并申请开通正式广告账号
 * 待广告账号开通后即可正式才产生收益
 
@@ -38,11 +38,11 @@ SDK 接入步骤概览：
 2. Joowa 将在1个工作日内完成应用的相关基础配置，并返回配置信息（在后续的 Joowa SDK 对接中需要用上）
 3. 开发者继续接入 Joowa SDK
 
-## 3. 导入 Joowa SDK
+## 3. 导入 Joowa SDK 到项目
 
 将 `joowa-ads-xxx.aar` 和 `joowa-ads-xxx.pom` 复制到 app 的 libs 中
 
-## 3. 配置 Joowa SDK 构建内容
+## 4. 完成 Joowa SDK 构建配置
 
 在您的应用的应用构建模块中（如：app/build.gradle)加入以下配置即可
 
@@ -87,7 +87,7 @@ dependencies {
 }
 ```
 
-## 4. 配置 Joowa 初始化配置
+## 5. 完成 Joowa 其他配置
 
 1. 在您应用的 `strings.xml`（如：app/src/main/res/valuse/strings.xml）中填入以下配置：
 
@@ -124,7 +124,7 @@ dependencies {
     </manifest>
     ```
 
-## 5. 添加网络安全配置
+## 6. 添加网络安全配置
 
 从 Android 9.0 (API 28) 开始，应用默认禁止非Https的网络请求。为了能使用部分依旧还在使用 HTTP 请求的广告服务，需要添加额外的网络安全配置。
 
@@ -168,7 +168,7 @@ dependencies {
     </manifest>
     ```
  
-## 6. 初始化 Joowa SDK
+## 7. 初始化 Joowa SDK
 
 
 1. 在 `Application.onCreate()` 方法中，调用以下代码
@@ -217,22 +217,57 @@ public class MainActivity extends Activity{
 
 1. 在执行所有其他 Joowa SDK 的方法之前，必须先完成初始化调用
 
-## 7. 后续步骤
+## 8. 后续步骤
 
 * 接入[激励视频广告](Joowa%20Ads%20Android%20SDK%20激励视频接入文档.md)
 * 接入插屏广告（未支持）
 
-## 8. 其他说明
+## 9. （可选）GDPR
 
-### 混淆配置
+《通用数据保护条例》（Gneral Data Protection Regulation，GDPR）是欧盟出台的数据保护方案。关于更多 GDPR 理解，可以参考 [这里](http://www.woshipm.com/pmd/1024908.html)。
 
-Joowa Ads Android SDK（AAR） 已经内置配好混淆配置，开发者无需额外操作
+如果你的产品面向欧盟用户，那么我们建议你的应用/游戏按照 Mopub 的 GDPR 引导流程去保证 SDK 遵守 GDPR 规范。
 
-### Joowa Ads Android SDK 最低版本要求
+> https://developers.mopub.com/publishers/best-practices/gdpr-guide/
+> https://developers.mopub.com/publishers/android/gdpr/
+
+一个简单的例子如下：
+
+```
+JoowaAds.initMopub(this, "dev_key", new JoowaAdsInitializationListener() {
+    @Override
+    public void onInitializationFinished() {
+        // GDPR 处理（必须在初始化之后才能生效）
+        if (MoPub.getPersonalInformationManager() != null &&
+            MoPub.getPersonalInformationManager().shouldShowConsentDialog()) {
+            MoPub.getPersonalInformationManager().loadConsentDialog(new ConsentDialogListener() {
+                @Override
+                public void onConsentDialogLoaded() {
+                    MoPub.getPersonalInformationManager().showConsentDialog();
+                }
+                
+                @Override
+                public void onConsentDialogLoadFailed(@NonNull MoPubErrorCode moPubErrorCode) {
+                    log("加载失败");
+                }
+            });
+        }
+    }
+});
+```
+
+## 10. 其他说明
+
+### 10.1 Joowa Ads Android SDK 最低版本要求
 
 Android 5.0 (minSdkVersion 21)
 
-### 移除部分权限
+### 10.2 混淆配置
+
+Joowa Ads Android SDK（AAR） 已经内置配好混淆配置，开发者无需额外操作
+
+
+### 10.3 移除部分权限
 
 Joowa SDK 中内置了部分可选权限：
 
@@ -258,7 +293,7 @@ Joowa SDK 中内置了部分可选权限：
 </manifest >
 ```
 
-### 备份规则
+### 10.4 备份规则
 
 如果您在 `AndroidManifest.xml` 的 `<application>` 标签内添加 `android:fullBackupContent="true"` ，您可能会收到错误提示：
 
