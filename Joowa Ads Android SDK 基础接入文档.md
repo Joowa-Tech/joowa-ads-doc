@@ -83,7 +83,7 @@ dependencies {
 }
 ```
 
-## 5. 完成 Joowa 其他配置
+## 5. 完成 Joowa SDK 其他配置
 
 1. 在您应用的 `strings.xml`（如：`app/src/main/res/valuse/strings.xml`）中填入以下配置：
 
@@ -115,7 +115,7 @@ dependencies {
             <!-- AppLovin SDK Key -->
             <meta-data
                 android:name="applovin.sdk.key"
-                android:value="这里填写申请到的 AppLovin Sdk Key" />
+                android:value="这里填写申请到的 AppLovin SDK Key" />
         </application>
     </manifest>
     ```
