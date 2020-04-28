@@ -31,9 +31,14 @@ private JoowaInterstitial mJoowaInterstitial;
 
 @Override
 protected void onCreate(Bundle savedInstanceState) {
-    // ...
-
-    mJoowaInterstitial = new JoowaInterstitial(this);
+    super.onCreate(savedInstanceState);
+    JoowaAds.initMopub(this, new JoowaAdsInitializationListener() {
+        @Override
+        public void onInitializationFinished() {
+            // 需要在初始化之后创建实例
+            mJoowaInterstitial = new JoowaInterstitial(MainActivity.this);
+        }
+    });
 }
 ```
 
@@ -57,7 +62,7 @@ mJoowaInterstitial.show();
 
 ## 8. 释放插屏实例
 
-在 `Activity` 的 `onDestroy` 方法中释放插屏实例
+在 `Activity` 的 `onDestroy` 方法中释放插屏实例：
 
 ```
 @Override
@@ -126,10 +131,14 @@ private JoowaInterstitialListener mInterstitialListener = new JoowaInterstitialL
 
 @Override
 protected void onCreate(Bundle savedInstanceState) {
-    // ...
-
-    mJoowaInterstitial = new JoowaInterstitial(this);
-    mJoowaInterstitial.setListener(mInterstitialListener);
+    super.onCreate(savedInstanceState);
+    JoowaAds.initMopub(this, new JoowaAdsInitializationListener() {
+        @Override
+        public void onInitializationFinished() {
+            mJoowaInterstitial = new JoowaInterstitial(MainActivity.this);
+            mJoowaInterstitial.setListener(mInterstitialListener);
+        }
+    });
 }
 ```
 
