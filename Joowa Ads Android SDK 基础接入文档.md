@@ -151,7 +151,7 @@ dependencies {
     </network-security-config>
     ```
 
-2. 在你的 AndroidManifest.xml 文件中引用刚刚的网络安全配置：
+2. 在您的 AndroidManifest.xml 文件中引用刚刚的网络安全配置：
 
     ```
     <manifest>
@@ -189,7 +189,7 @@ public class MyApplication extends Application {
 }
 ```
 
-2. 在你的 Activity 中调用以下代码，建议在首个 Activity 中调用初始化代码
+2. 在您的 Activity 中调用以下代码，建议在首个 Activity 中调用初始化代码
 
 ```
 JoowaAds.initMopub(Activity activity, JoowaAdsInitializationListener listener);
@@ -230,10 +230,10 @@ public class MainActivity extends Activity{
 
 《通用数据保护条例》（Gneral Data Protection Regulation，GDPR）是欧盟出台的数据保护方案。关于更多 GDPR 理解，可以参考 [这里](http://www.woshipm.com/pmd/1024908.html)。
 
-如果你的产品面向欧盟用户，那么我们建议你的应用/游戏按照 Mopub 的 GDPR 引导流程去保证 SDK 遵守 GDPR 规范。
+如果您的产品面向欧盟用户，那么我们建议您的应用/游戏按照 Mopub 的 GDPR 引导流程去保证 SDK 遵守 GDPR 规范。
 
-> https://developers.mopub.com/publishers/best-practices/gdpr-guide/
-> https://developers.mopub.com/publishers/android/gdpr/
+> * https://developers.mopub.com/publishers/best-practices/gdpr-guide/
+> * https://developers.mopub.com/publishers/android/gdpr/
 
 一个简单的例子如下：
 
@@ -242,11 +242,16 @@ JoowaAds.initMopub(this, new JoowaAdsInitializationListener() {
     @Override
     public void onInitializationFinished() {
         // GDPR 处理（必须在初始化之后才能生效）
+
+        // 1. 检查是否需要展示确认对话框
         if (MoPub.getPersonalInformationManager() != null &&
             MoPub.getPersonalInformationManager().shouldShowConsentDialog()) {
+
+            // 2. 如果需要，就开始确认对话框加载
             MoPub.getPersonalInformationManager().loadConsentDialog(new ConsentDialogListener() {
                 @Override
                 public void onConsentDialogLoaded() {
+                    // 3. 加载成功之后展示给用户
                     MoPub.getPersonalInformationManager().showConsentDialog();
                 }
                 
@@ -262,14 +267,13 @@ JoowaAds.initMopub(this, new JoowaAdsInitializationListener() {
 
 ## 10. 其他说明
 
-### 10.1 Joowa Ads Android SDK 最低版本要求
+### 10.1 Joowa SDK 最低版本要求
 
-Android 5.0 (minSdkVersion 21)
+Android 5.0 (minSdkVersion 21)。
 
-### 10.2 混淆配置
+### 10.2 Joowa SDK 混淆配置
 
-Joowa Ads Android SDK（AAR） 已经内置配好混淆配置，开发者无需额外操作
-
+Joowa SDK（AAR） 已经内置配好混淆配置，开发者无需额外操作。
 
 ### 10.3 移除部分权限
 
@@ -281,7 +285,7 @@ Joowa SDK 中内置了部分可选权限：
 * 读取设备信息权限
 	* READ_PHONE_STATE
 
-如果你的应用不需要上述权限，那么可以在你的应用的 `AndroidMainfest.xml` 中，通过下面写法移除权限：
+如果您的应用不需要上述权限，那么可以在您的应用的 `AndroidMainfest.xml` 中，参照下面写法移除权限：
 
 ```
 <manifest >
@@ -311,7 +315,7 @@ Manifest merger failed : Attribute application@fullBackupContent value=(true)
 tools:replace="android:fullBackupContent"
 ```
 
-如果您指定了自己的备份规则，请通过添加以下规则将它们与AppsFlyer规则手动合并：
+如果您指定了自己的备份规则，请通过添加以下规则将它们与 AppsFlyer 规则手动合并：
 
 ```
 <full-backup-content>
