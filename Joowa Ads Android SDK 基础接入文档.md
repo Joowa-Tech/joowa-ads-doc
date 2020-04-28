@@ -147,7 +147,7 @@ dependencies {
         <domain-config cleartextTrafficPermitted="true">
             <domain includeSubdomains="true">127.0.0.1</domain>
         </domain-config>
-        
+
     </network-security-config>
     ```
 
@@ -166,7 +166,7 @@ dependencies {
 ## 7. 初始化 Joowa SDK
 
 
-1. 在 `Application.onCreate()` 方法中，调用以下代码
+1. 创建自定义的 Application 类，在 `Application.onCreate()` 方法中，调用以下代码：
 
 ```
 JoowaAds.initJoowa(String devKey);
@@ -175,6 +175,9 @@ JoowaAds.initAppsFlyer(Context context);
 e.g.
 
 ```
+/**
+ * ps: 请记得在 AndroidManifest.xml 中的 application 标签中声明使用 MyApplication 
+ */
 public class MyApplication extends Application {
 
     @Override
