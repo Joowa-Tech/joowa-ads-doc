@@ -40,7 +40,7 @@ SDK 接入步骤概览：
 
 ## 4. 完成 Joowa SDK 构建配置
 
-在您的应用的应用构建模块中（如：app/build.gradle)加入以下配置即可
+在您的应用的应用构建模块中（如：`app/build.gradle`)加入以下配置即可
 
 ```
 android {
@@ -85,7 +85,7 @@ dependencies {
 
 ## 5. 完成 Joowa 其他配置
 
-1. 在您应用的 `strings.xml`（如：app/src/main/res/valuse/strings.xml）中填入以下配置：
+1. 在您应用的 `strings.xml`（如：`app/src/main/res/valuse/strings.xml`）中填入以下配置：
 
     ```
     <resources >
@@ -97,7 +97,7 @@ dependencies {
 2. 在您的 `AndroidManifest.xml` 的 `<application>` 标签中添加以下内容：
     * 开启硬件加速（为了能播放Vungle中的部分广告）
     * Admob 广告的 Application Id
-    * AppLovin Sdk Key
+    * AppLovin SDK Key
 
     e.g.
 
@@ -122,9 +122,9 @@ dependencies {
 
 ## 6. 添加网络安全配置
 
-从 Android 9.0 (API 28) 开始，应用默认禁止非Https的网络请求。为了能使用部分依旧还在使用 HTTP 请求的广告服务，需要添加额外的网络安全配置。
+从 Android 9.0 (API 28) 开始，应用默认禁止非Https的网络请求。为了能使用部分依旧还在使用 HTTP 请求的广告服务，需要添加额外的网络安全配置。步骤如下：
 
-1. 添加网络安全配置（如：在res/xml/network_security_config.xml）：
+1. 添加网络安全配置（如：`res/xml/network_security_config.xml`）：
 
     ```
     <?xml version="1.0" encoding="utf-8"?>
@@ -187,10 +187,10 @@ public class MyApplication extends Application {
 }
 ```
 
-2. 在你的 Activity 中调用以下代码，建议在尽可能早的 Activity 中调用初始化代码
+2. 在你的 Activity 中调用以下代码，建议在首个 Activity 中调用初始化代码
 
 ```
-JoowaAds.initMopub(Activity activity, String developerKey, JoowaAdsInitializationListener listener);
+JoowaAds.initMopub(Activity activity, JoowaAdsInitializationListener listener);
 ```
 
 e.g. :
@@ -201,11 +201,15 @@ public class MainActivity extends Activity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        JoowaAds.initMopub(this, "你的开发者key", new JoowaAdsInitializationListener() {
+        JoowaAds.initMopub(this, new JoowaAdsInitializationListener() {
             @Override
             public void onInitializationFinished() {
-                // Joowa ads sdk complete initialization.
-                JoowaRewardedVideo.load();
+                // SDK 初始化完毕
+                // 后续可选步骤：
+                // * 可以展示 GDPR 确认对话框
+                // * 预加载激励视频广告
+                // * 预加载插屏广告
+                
             }
         });
     }
@@ -213,7 +217,7 @@ public class MainActivity extends Activity{
 
 注意：
 
-1. 在执行所有其他 Joowa SDK 的方法之前，必须先完成初始化调用
+1. 在执行所有其他 Joowa SDK 的方法之前，必须先等候 `JoowaAds#initMopub` 初始化成功
 
 ## 8. 后续步骤
 
@@ -232,7 +236,7 @@ public class MainActivity extends Activity{
 一个简单的例子如下：
 
 ```
-JoowaAds.initMopub(this, "dev_key", new JoowaAdsInitializationListener() {
+JoowaAds.initMopub(this, new JoowaAdsInitializationListener() {
     @Override
     public void onInitializationFinished() {
         // GDPR 处理（必须在初始化之后才能生效）
@@ -246,7 +250,7 @@ JoowaAds.initMopub(this, "dev_key", new JoowaAdsInitializationListener() {
                 
                 @Override
                 public void onConsentDialogLoadFailed(@NonNull MoPubErrorCode moPubErrorCode) {
-                    log("加载失败");
+                    Log.i("JoowaAdsDemo", "加载失败");
                 }
             });
         }
