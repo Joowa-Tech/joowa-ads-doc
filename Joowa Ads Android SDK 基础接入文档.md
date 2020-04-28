@@ -207,7 +207,7 @@ public class MainActivity extends Activity{
             @Override
             public void onInitializationFinished() {
                 // SDK 初始化完毕，后续建议步骤（可选）：
-                // * 可以展示 GDPR 确认对话框
+                // * 展示 GDPR 确认对话框
                 // * 预加载激励视频广告
                 // * 预加载插屏广告
                 
@@ -218,7 +218,8 @@ public class MainActivity extends Activity{
 
 注意：
 
-1. 在执行所有其他 Joowa SDK 的方法之前，必须先等候 `JoowaAds#initMopub` 初始化成功
+1. 在展示 GDPR 确认对话框的相关方法之前，必须先等候 `JoowaAds#initMopub` 初始化成功。
+1. 在执行 Joowa 插屏、激励视频的相关方法之前，必须先等候 `JoowaAds#initMopub` 初始化成功。
 
 ## 8. 后续步骤
 
