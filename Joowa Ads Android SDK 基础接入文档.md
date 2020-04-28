@@ -129,7 +129,6 @@ dependencies {
     ```
     <?xml version="1.0" encoding="utf-8"?>
     <network-security-config>
-        ...
 
         <!-- 默认允许Http请求 -->
         <base-config cleartextTrafficPermitted="true">
@@ -148,7 +147,7 @@ dependencies {
         <domain-config cleartextTrafficPermitted="true">
             <domain includeSubdomains="true">127.0.0.1</domain>
         </domain-config>
-        ...
+        
     </network-security-config>
     ```
 
