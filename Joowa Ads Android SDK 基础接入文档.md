@@ -22,17 +22,13 @@ SDK 接入步骤概览：
 
 ## 1. 申请开发者账号
 
-开发者第一次接入 Joowa 时，需要申请 Joowa 开发者账号。后续接入将不用再次进行此步骤。
-
-申请开发者账号后，可以获取 Joowa 开发者唯一标识。在 Joowa SDK 初始化的时候，需要传入 Joowa 开发者唯一标识
-
-开发者账号和唯一标识可通过和商务经理对接申请获取。
+* 开发者第一次接入 Joowa 时，需要申请 Joowa 开发者账号。后续接入将不用再次进行此步骤。
+* 申请开发者账号后，可以获取 Joowa 开发者唯一标识。在 Joowa SDK 初始化的时候，需要传入 Joowa 开发者唯一标识。
+* 开发者账号和唯一标识可通过和商务经理对接申请获取。
 
 ## 2. 申请 Joowa 应用配置
 
-对于每一个包名，开发者都需要为其申请 Joowa 应用配置。
-
-申请流程如下：
+对于每一个包名，开发者都需要为其申请 Joowa 应用配置。申请流程如下：
 
 1. 贵方商务经理将贵应用包名发送给 Joowa 商务经理。
 2. Joowa 将在1个工作日内完成应用的相关基础配置，并返回配置信息（在后续的 Joowa SDK 对接中需要用上）
@@ -174,6 +170,7 @@ dependencies {
 1. 在 `Application.onCreate()` 方法中，调用以下代码
 
 ```
+JoowaAds.initJoowa(String devKey);
 JoowaAds.initAppsFlyer(Context context);
 ```
 e.g.
@@ -184,6 +181,7 @@ public class MyApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        JoowaAds.initJoowa("这里填写开发者key");
         JoowaAds.initAppsFlyer(this);
     }
 }
