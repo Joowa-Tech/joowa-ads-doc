@@ -206,8 +206,7 @@ public class MainActivity extends Activity{
         JoowaAds.initMopub(this, new JoowaAdsInitializationListener() {
             @Override
             public void onInitializationFinished() {
-                // SDK 初始化完毕
-                // 后续可选步骤：
+                // SDK 初始化完毕，后续建议步骤（可选）：
                 // * 可以展示 GDPR 确认对话框
                 // * 预加载激励视频广告
                 // * 预加载插屏广告
