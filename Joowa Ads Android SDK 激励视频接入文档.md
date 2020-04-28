@@ -47,9 +47,9 @@ JoowaRewardedVideo.show();
 
 为了让广告SDK能正常使用，你需要在你有以下行为的 Activity 中
 
-* `JoowaRewardedVideo.load()` 
-* `JoowaRewardedVideo.show` 
-* `JoowaRewardedVideo.isReady` 
+* `JoowaRewardedVideo#load()` 
+* `JoowaRewardedVideo#show()` 
+* `JoowaRewardedVideo#isReady()` 
   
 回调 Joowa SDK 对应的方法：
 
