@@ -14,7 +14,7 @@ SDK 接入步骤概览：
 * 完成 Joowa SDK 其他配置
 * 添加网络安全配置
 * 初始化 SDK
-* 接入对应的广告形式：
+* 接入需要的广告形式
   * 激励视频广告
   * 插屏广告
 * 提交 APK 给 Joowa 测试并申请开通正式广告账号
@@ -220,7 +220,7 @@ public class MainActivity extends Activity{
 ## 8. 后续步骤
 
 * 接入[激励视频广告](Joowa%20Ads%20Android%20SDK%20激励视频接入文档.md)
-* 接入插屏广告（未支持）
+* 接入[插屏广告](Joowa%20Ads%20Android%20SDK%20插屏接入文档.md)
 
 ## 9. （可选）GDPR
 

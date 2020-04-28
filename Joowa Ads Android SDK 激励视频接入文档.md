@@ -151,4 +151,4 @@ JoowaRewardedVideo.setListener(listener);
 ## 8. 补充说明
 
 1. Joowa 封装了 Mopub 聚合广告，并移除了广告位（AdunitId/AdPlacement）的相关概念。
-2. 在调用 `load` / `isReady` / `show` 等方法时，SDK内部都会选择在合适的时机去预加载更多广告。
+2. 在调用 `load` / `isReady` / `show` 等方法时，SDK内部都会选择在合适的时机去预加载更多广告，开发者无需处理。
