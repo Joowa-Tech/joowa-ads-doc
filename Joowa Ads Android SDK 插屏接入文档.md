@@ -1,8 +1,8 @@
 # Joowa Ads Android SDK 插屏接入文档
 
-## 1. 重要
+## 1. 接入前置要求
 
-在接入 Joowa Ads Android SDK 插屏模块之前，请先确保完成 [Joowa Ads Android SDK 基础接入文档](Joowa%20Ads%20Android%20SDK%20基础接入文档.md)
+在接入 Joowa Ads Android SDK 插屏模块之前，请先确保完成 [Joowa Ads Android SDK 基础接入文档](Joowa%20Ads%20Android%20SDK%20基础接入文档.md)。
 
 ## 2. 配置广告位信息
 
