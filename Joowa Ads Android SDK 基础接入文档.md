@@ -93,8 +93,8 @@ repositories {
 dependencies {
     // 注意替换 xxx 为实际的版本号
     implementation('com.joowa:joowa-ads:xxx@aar') {
-		transitive = true
-	}
+        transitive = true
+    }
 }
 ```
 
