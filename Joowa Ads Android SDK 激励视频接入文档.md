@@ -47,9 +47,9 @@ JoowaRewardedVideo.show();
 
 为了让广告SDK能正常使用，你需要在你有以下行为的 Activity 中
 
-* `JoowaRewardedVideo#load()` 
-* `JoowaRewardedVideo#show()` 
-* `JoowaRewardedVideo#isReady()` 
+* `JoowaRewardedVideo.load()` 
+* `JoowaRewardedVideo.show()` 
+* `JoowaRewardedVideo.isReady()` 
   
 回调 Joowa SDK 对应的方法：
 
@@ -152,3 +152,56 @@ JoowaRewardedVideo.setListener(listener);
 
 1. Joowa 封装了 Mopub 聚合广告，并移除了广告位（AdUnitId/AdPlacement）的相关概念。
 2. 在调用 `load` / `isReady` / `show` 等方法时，SDK内部都会选择在合适的时机去预加载更多广告，开发者无需处理。
+
+## 9. 最佳实践
+
+### 推荐做法
+
+1. 由于 Joowa SDK 已经在内部自动处理好加载广告的时机，因此开发者只需要一次 `JoowaRewardedVideo.load()` 去加载激励广告即可。
+2. 在调用 `JoowaRewardedVideo.load()` 之后，Joowa SDK 会在合适的时机去进行广告填充，包括失败后重试等逻辑。因此开发者 **无需** 监听激励视频广告加载失败的回调，并在失败回调中 **立即调用** 或者 **延迟调用** `JoowaRewardedVideo.load()` 。
+3. 在需要展示激励视频广告的地方检查是否可以播放即可：
+    
+    ```
+    if (JoowaRewardedVideo.isReady()) {
+        JoowaRewardedVideo.show();
+    } else {
+        // 激励视频还没有加载好
+    }
+    ```
+
+一个推荐写法的例子：
+
+```
+@Override
+protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    
+    // 初始化 Mopub
+    JoowaAds.initMoPub(this, new JoowaAdsInitializationListener() {
+        @Override
+        public void onInitializationFinished() {
+            // 初始化成功之后加载激励视频广告
+            JoowaRewardedVideo.load();
+        }
+    });
+}
+
+// 后续：在需要展示激励视频广告的地方直接显示即可
+if (JoowaRewardedVideo.isReady()) {
+    JoowaRewardedVideo.show();
+} else {
+    // 激励视频还没有加载好
+}
+```
+
+### 一般做法
+
+当然，开发者也可以多次调用 `JoowaRewardedVideo.load()` 并配合监监听器的加载完成/失败的回调方法去做UI更新的需求。
+
+比如：
+
+```
+进入某个页面时，激励视频广告还没有加载好，此时不显示激励视频广告的播放按钮。待激励视频广告加载好后，显示激励视频广告的播放按钮。
+```
+
+此时，开发者需要调用 `JoowaRewardedVideo.load()` 并配合监监听器的加载完成/失败的回调方法去做UI更新需求。
