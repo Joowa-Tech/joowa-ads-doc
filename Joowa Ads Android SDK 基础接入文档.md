@@ -47,7 +47,7 @@ app
         └── joowa
             └── joowa-ads
                 └── xxx
-                    └── joowa-ads-xxx.aar
+                    ├── joowa-ads-xxx.aar
                     └── joowa-ads-xxx.pom
 ```
 
