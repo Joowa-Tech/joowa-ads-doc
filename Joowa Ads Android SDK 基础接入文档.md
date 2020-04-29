@@ -51,7 +51,7 @@ app
                     └── joowa-ads-xxx.pom
 ```
 
-**请注意替换xxx为实际的sdk的版本号**
+**请注意替换 `xxx` 为实际的sdk的版本号**
 
 ## 4. 完成 Joowa SDK 构建配置
 
@@ -91,10 +91,10 @@ repositories {
 }
 
 dependencies {
-    // 注意替换xxx为实际的版本号
-    implementation(name: 'joowa-ads-xxx', ext: 'aar') {
-        transitive = true
-    }
+    // 注意替换 xxx 为实际的版本号
+    implementation('com.joowa:joowa-ads:xxx@aar') {
+		transitive = true
+	}
 }
 ```
 
