@@ -275,7 +275,21 @@ Android 5.0 (minSdkVersion 21)。
 
 Joowa SDK（AAR） 已经内置配好混淆配置，开发者无需额外操作。
 
-### 10.3 移除部分权限
+### 10.3 AndroidX 依赖
+
+部分广告 SDK 依赖 AndroidX Library，需要在你项目的 `gradle.properties` 中加入使用AndroidX的配置
+
+```
+# AndroidX package structure to make it clearer which packages are bundled with the
+# Android operating system, and which are packaged with your app's APK
+# https://developer.android.com/topic/libraries/support-library/androidx-rn
+android.useAndroidX=true
+
+# Automatically convert third-party libraries to use AndroidX
+android.enableJetifier=true
+```
+
+### 10.4 移除部分权限
 
 Joowa SDK 中内置了部分可选权限：
 
@@ -301,7 +315,7 @@ Joowa SDK 中内置了部分可选权限：
 </manifest >
 ```
 
-### 10.4 备份规则
+### 10.5 备份规则
 
 如果您在 `AndroidManifest.xml` 的 `<application>` 标签内添加 `android:fullBackupContent="true"` ，您可能会收到错误提示：
 
