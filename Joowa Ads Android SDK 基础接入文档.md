@@ -36,7 +36,22 @@ SDK 接入步骤概览：
 
 ## 3. 导入 Joowa SDK 到项目
 
-将 `joowa-ads-xxx.aar` 和 `joowa-ads-xxx.pom` 复制到 app 的 libs 中
+将 `joowa-ads-xxx.aar` 和 `joowa-ads-xxx.pom` 复制到应用模块的 `libs` 中，具体路径为 `libs/com/joowa/joowa-ads/xxx`
+
+e.g.
+
+```
+app            
+├── libs
+│   ├── com
+│   │   ├── joowa
+│   │   │   ├── joowa-ads
+│   │   │   │   ├── xxx
+│   │   │   │   │   ├── joowa-ads-xxx.aar
+│   │   │   │   │   └── joowa-ads-xxx.pom
+```
+
+**请注意替换xxx为实际的sdk的版本号**
 
 ## 4. 完成 Joowa SDK 构建配置
 
@@ -69,10 +84,10 @@ repositories {
     maven { url 'https://jitpack.io' }
     maven { url 'https://chartboostmobile.bintray.com/Chartboost' }
 
-    // 刚刚导入的文件路径
-    flatDir {
-        dirs 'libs'
-    }
+  	// 指定项目的 libs 目录为 maven 仓库，方便依赖 JoowaAdsSDK 以及 JoowaAdsSDK 所依赖的包
+	maven {
+		url uri("${projectDir}/libs")
+	}
 }
 
 dependencies {
