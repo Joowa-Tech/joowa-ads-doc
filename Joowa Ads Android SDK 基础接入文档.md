@@ -42,13 +42,13 @@ e.g.
 
 ```
 app            
-├── libs
-│   ├── com
-│   │   ├── joowa
-│   │   │   ├── joowa-ads
-│   │   │   │   ├── xxx
-│   │   │   │   │   ├── joowa-ads-xxx.aar
-│   │   │   │   │   └── joowa-ads-xxx.pom
+└── libs
+    └── com
+        └── joowa
+            └── joowa-ads
+                └── xxx
+                    └── joowa-ads-xxx.aar
+                    └── joowa-ads-xxx.pom
 ```
 
 **请注意替换xxx为实际的sdk的版本号**
