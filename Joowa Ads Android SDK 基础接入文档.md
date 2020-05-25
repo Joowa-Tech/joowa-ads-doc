@@ -100,7 +100,7 @@ dependencies {
 
 ## 5. 完成 Joowa SDK 其他配置
 
-1. 在您应用的 `strings.xml`（如：`app/src/main/res/valuse/strings.xml`）中填入以下配置：
+1. 在您应用的 `strings.xml`（如：`app/src/main/res/values/strings.xml`）中填入以下配置：
 
     ```
     <resources >
