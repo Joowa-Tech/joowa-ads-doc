@@ -207,7 +207,7 @@ public class MyApplication extends Application {
 2. 在您的 Activity 中调用以下代码，建议在首个 Activity 中调用初始化代码
 
 ```
-JoowaAds.initMopub(Activity activity, JoowaAdsInitializationListener listener);
+JoowaAds.initMoPub(Activity activity, JoowaAdsInitializationListener listener);
 ```
 
 e.g. :
@@ -218,7 +218,7 @@ public class MainActivity extends Activity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        JoowaAds.initMopub(this, new JoowaAdsInitializationListener() {
+        JoowaAds.initMoPub(this, new JoowaAdsInitializationListener() {
             @Override
             public void onInitializationFinished() {
                 // SDK 初始化完毕，后续建议步骤（可选）：
@@ -233,8 +233,8 @@ public class MainActivity extends Activity{
 
 注意：
 
-1. 在展示 GDPR 确认对话框的相关方法之前，必须先等候 `JoowaAds#initMopub` 初始化成功。
-1. 在执行 Joowa 插屏、激励视频的相关方法之前，必须先等候 `JoowaAds#initMopub` 初始化成功。
+1. 在展示 GDPR 确认对话框的相关方法之前，必须先等候 `JoowaAds#initMoPub` 初始化成功。
+1. 在执行 Joowa 插屏、激励视频的相关方法之前，必须先等候 `JoowaAds#initMoPub` 初始化成功。
 
 ## 8. 后续步骤
 
