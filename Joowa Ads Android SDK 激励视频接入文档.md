@@ -6,7 +6,7 @@
 
 ## 2. 配置广告位信息
 
-在您应用的 `strings.xml`（如：`app/src/main/res/valuse/strings.xml`）中填入以下配置：
+在您应用的 `strings.xml`（如：`app/src/main/res/values/strings.xml`）中填入以下配置：
 
 ```
 <resources >
