@@ -353,3 +353,51 @@ tools:replace="android:fullBackupContent"
 </full-backup-content>
 ```
 
+### 10.6 打包错误
+
+#### 打包时，OKHttp 报错
+
+解决方案：
+
+打包时排除该部分文件即可。具体操作为在 `app/build.gradle` 的 `android` 闭包中添加打包排除项：
+
+```
+android {
+    // ...
+    packagingOptions {
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/license.txt'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/NOTICE.txt'
+        exclude 'META-INF/notice.txt'
+        exclude 'META-INF/ASL2.0'
+        exclude 'META-INF/proguard/okhttp3.pro'
+        exclude 'okhttp3/internal/publicsuffix/publicsuffixes.gz'
+    }
+}
+```
+
+#### 打包时，Gson 报错
+
+解决方案：
+
+Mopub 某些版本的传递性依赖中，使用了 Gson **v2.8.6** 。Gson v2.8.6 版本在已有反馈，可能无法编译通过。具体见Github Issue - [V2.8.6 java.lang.RuntimeException](https://github.com/google/gson/issues/1597)
+
+根据issue说明，降低Gson版本可以解决这个问题，因此将所有依赖 Gson 的版本降低到 2.8.5
+
+在 `app/build.gradle` 的 `dependencies` 闭包中加入如下代码即可：
+
+```
+dependencies {
+    // ... 
+
+	configurations.all {
+		resolutionStrategy {
+			force 'com.google.code.gson:gson:2.8.5'
+		}
+	}
+}
+```
+
