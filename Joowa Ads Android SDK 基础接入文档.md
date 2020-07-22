@@ -78,11 +78,10 @@ android {
 repositories {
     jcenter()
     mavenCentral()
-    maven { url "https://s3.amazonaws.com/moat-sdk-builds" }
-    maven { url 'https://dl.bintray.com/ironsource-mobile/android-sdk' }
-    maven { url 'https://adcolony.bintray.com/AdColony' }
-    maven { url 'https://jitpack.io' }
-    maven { url 'https://chartboostmobile.bintray.com/Chartboost' }
+
+	maven { url 'https://adcolony.bintray.com/AdColony' }
+	maven { url 'https://chartboostmobile.bintray.com/Chartboost' }
+	maven { url 'https://jitpack.io' }
 
   	// 指定项目的 libs 目录为 maven 仓库，方便依赖 JoowaAdsSDK 以及 JoowaAdsSDK 所依赖的包
 	maven {
